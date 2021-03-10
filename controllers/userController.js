@@ -1,3 +1,5 @@
+const User = require('../models/User')
+
 exports.login = () => {
 
 };
@@ -7,7 +9,9 @@ exports.logout = () => {
 };
 
 exports.register = (req, res) => {
-    console.log(req.body)
+    let user = new User(req.body)
+    user.register();
+
     res.send("Thank for tryin to register")   
 };
 
