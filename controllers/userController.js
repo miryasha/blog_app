@@ -7,6 +7,7 @@ exports.logout = () => {
 };
 
 exports.register = (req, res) => {
+    console.log(req.body)
     res.send("Thank for tryin to register")   
 };
 
