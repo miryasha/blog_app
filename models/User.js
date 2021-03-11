@@ -7,6 +7,20 @@ let User = function(data)  {
 
 };
 
+
+User.prototype.cleanUp = function() {
+   if(typeof(this.data.username) != "string") {this.data.username = ""};
+   if(typeof(this.data.email) != "string") {this.data.email = ""};
+   if(typeof(this.data.password) != "string") {this.data.password = ""};
+
+   // ge rid of any bogus properties
+   this.data = {
+      username : this.data.username.trim().toLowerCase(),
+      email: this.data.eamil.trim().toLowerCase(),
+      password: this.data.password
+   }
+}
+
 User.prototype.validate = function(){
    if (this.data.username == "") {this.errors.push("You must provide a username.")}
    if(this.data.username != "" && !validator.isAlphanumeric(this.data.username)) {this.errors.push("Username aca onl conarin letters and numbers.")}
@@ -19,8 +33,10 @@ User.prototype.validate = function(){
 };
 
 
+
 User.prototype.register = function() {
    // Step #1: Validate user data
+   this.cleanUp()
    this.validate()
 
 
