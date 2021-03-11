@@ -2,6 +2,7 @@ const User = require('../models/User')
 
 exports.login = () => {
 
+
 };
 
 exports.logout = () => {
@@ -11,8 +12,11 @@ exports.logout = () => {
 exports.register = (req, res) => {
     let user = new User(req.body)
     user.register();
-
-    res.send("Thank for tryin to register")   
+    if(user.errors.length) {
+       res.send(user.errors)
+    } else {
+       res.send("Congrats, ther arre no errors.")
+    };  
 };
 
 exports.home = (req, res) => {
